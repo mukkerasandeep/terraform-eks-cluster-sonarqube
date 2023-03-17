@@ -13,16 +13,6 @@ pipeline {
                 sh 'printenv' 
             } 
         } 
-        stage('SonarQube Analysis') { 
-           steps { 
-               script { 
-                   def scannerHome = tool 'sonarqube-1'; 
-                   withSonarQubeEnv('sonarqube-1') { 
-                       sh "${scannerHome}/bin/sonar-scanner" 
-                   } 
-               } 
-           } 
-        } 
         stage('Terraform Format') { 
             steps { 
                 sh 'terraform fmt -check' 
